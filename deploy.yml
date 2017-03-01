@@ -1,0 +1,78 @@
+---
+- name: Deploy drone.io
+  hosts: drone
+  become_user: root
+  become: true
+  vars_files:
+    - "vars/credentials.yml"
+    - "vars/main.yml"
+  tasks:
+    - name: start postgres for drone ci
+      docker_container:
+        name: postgres
+        image: postgres:latest
+        state: started
+        restart_policy: always
+        ports:
+          - "5432:5432"
+        volumes:
+          - /drone-postgres-data:/var/lib/postgresql/data
+        env:
+          POSTGRES_PASSWORD: "{{drone_postress_password}}"
+          POSTGRES_USER: "{{drone_postress_user}}"
+          POSTGRES_DB: "drone"
+      tags:
+        - postgres
+
+    - name: run drone server
+      docker_container:
+        name: drone-server
+        image: "drone/drone:{{drone_version}}"
+        state: started
+        restart_policy: always
+        ports:
+          - "8000:8000"
+        volumes:
+          - /drone:/var/lib/drone/
+        links:
+          - postgres
+        env:
+          I_UNDERSTAND_I_AM_USING_AN_UNSTABLE_VERSION: "true"
+          I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
+          DRONE_SERVER_ADDR: ":8000"
+          DRONE_DEBUG: "true"
+          DRONE_SECRET: "{{drone_secret}}"
+          DRONE_DATABASE_DRIVER: postgres
+          DRONE_DATABASE_DATASOURCE: "postgres://{{drone_postress_user}}:{{drone_postress_password}}@postgres:5432/drone?sslmode=disable"
+          DRONE_OPEN: "false"
+          DRONE_ADMIN: "{{drone_github_users}}"
+          DRONE_ADMIN_ALL: "false"
+          DRONE_GITHUB: "true"
+          DRONE_GITHUB_CLIENT: "{{drone_github_client}}"
+          DRONE_GITHUB_SECRET: "{{drone_github_secret}}"
+      tags:
+        - drone
+        - server
+
+    - name: run drone agent
+      docker_container:
+        name: "agent-{{item.name}}"
+        image: "drone/drone:{{drone_version}}"
+        privileged: yes
+        command: agent
+        state: started
+        restart_policy: always
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        links:
+          - drone-server
+        env:
+          I_UNDERSTAND_I_AM_USING_AN_UNSTABLE_VERSION: "true"
+          I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
+          DRONE_SERVER: ws://drone-server:8000/ws/broker
+          DRONE_DEBUG: "true"
+          DRONE_SECRET: "{{drone_secret}}"
+      with_items: "{{drone_agents}}"
+      tags:
+        - drone
+        - agent
