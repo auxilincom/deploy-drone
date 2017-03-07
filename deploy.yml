@@ -10,7 +10,7 @@
     - name: start postgres for drone ci
       docker_container:
         name: postgres
-        image: postgres:latest
+        image: postgres:9.6.1
         state: started
         restart_policy: always
         ports:
@@ -43,7 +43,7 @@
           DRONE_DEBUG: "true"
           DRONE_SECRET: "{{drone_secret}}"
           DRONE_DATABASE_DRIVER: postgres
-          DRONE_DATABASE_DATASOURCE: "postgres://{{drone_postress_user}}:{{drone_postress_password}}@postgres:5432/drone?sslmode=disable"
+          DRONE_DATABASE_DATASOURCE: postgres://{{drone_postress_user}}:{{drone_postress_password}}@postgres:5432/drone?sslmode=disable
           DRONE_OPEN: "false"
           DRONE_ADMIN: "{{drone_github_users}}"
           DRONE_ADMIN_ALL: "false"

@@ -1,5 +1,5 @@
 ---
-- name: Setup nginx drone
+- name: Setup nginx for drone
   hosts: nginx
   become: true
   become_user: root

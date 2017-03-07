@@ -1,9 +1,9 @@
 drone_version: 0.5
-drone_github_users: "anorsich"
+drone_github_users: "anorsich,maqpie"
 drone_agents: [{name: "Nancy"}]
 
 server_setup_ssl: false
 server_ssl_cert_path: "/etc/nginx/ssl/drone-ci.key"
 server_ssl_key_path: "/etc/nginx/ssl/drone-ci.crt"
 
-nginx_drone_server_name: ci.your-app.com
+nginx_drone_server_name: 138.197.86.232

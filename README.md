@@ -1,16 +1,16 @@
 ## Installing Drone CI
 
-This repository aims to help for the beginners to get started with Drone. Install it within minutes to start building real stuff. If you want to get full picture about using Drone CI in production and setting up continuous integration process for your product start from our [blog post](http://)
+This repository aims to help beginners to get started with Drone. Install it within minutes and start moving towards continuous integration. If you want to get full picture about using Drone CI in production and setting up continuous integration process for your product start from our [blog post](http://)
 
 Below we describe in details how to:
 
 1. Install Drone CI on development environment
 2. Install production ready Drone CI behind nginx proxy with optional SSL
 
-If you plan to use Drone CI for your product feel free to copy this repository to your project and change as needed.
+*If you plan to use Drone CI for your product feel free to copy this repository to your project and change as needed.*
 
-Please, note that we use version 0.5 of drone, which is not finally released yet, so there can be some breaking changes.
-The good news is that we've been using this version in production for two months already and haven't had any issues yet.
+Please, note that we use version 0.5 of Drone, which is not finally released yet, so there can be some breaking changes eventually.
+The good news is that we've been using this version in production for two months already and haven't had any issues.
 
 ### Setting up Github OAuth application
 
@@ -37,7 +37,7 @@ Installing Drone CI:
 
 That's it! `./bin/start-local.sh` script uses `docker-compose` to run Drone UI and Drone Agent. Environment variables from `drone.env` are in the `.gitignore` to keep your secrets out of github repository.
 
-Note: When you first see Drone UI it will show `Loading...` in the sidebar - don't worry, this is expected behavior. Just go to the to the Account from top right menu to enable drone for some of your github repositories. From here you can move over to [this repository](), which can help you get started shipping your product with Drone CI.
+Note: When you first see Drone UI it will show `Loading...` in the sidebar - don't worry, this is expected behavior. Just go to the to the Account from top right menu to enable drone for some of your github repositories. From here you can move over to [this repository](https://github.com/maqpie/drone-starter), which can help you get started shipping your product with Drone CI.
 
 ### Deploying production ready Drone CI to the Ubuntu 16.04
 
@@ -85,12 +85,12 @@ If you already have nginx installed somewhere else and just would like to attach
 1. Set nginx server ip in `hosts` file for the nginx target
 2. Run same command `./bin/setup-nginx.sh`, but reply `no` to the question about nginx installation.
 
-In this case nginx configuration for Drone CI will be copied to the existing nginx server. Note: you might need restart your nginx server manually for changes to take an effect.
+In this case nginx configuration for Drone CI will be copied to the existing nginx server.
 
 
 ### Setting up ssl for production Drone CI
 
-1. Place your ssl keys into int ssl-keys directory as app.crt and app.key (they are in `.gitignore`)
+1. Place your ssl keys into int ssl-keys directory as app.crt and app.key (they are in a `.gitignore`)
 2. Make sure that `server_setup_ssl` is set to true in `vars/main.yml`
 3. Deploy ssl using `./bin/setup-server.sh --tags "nginx"`
 4. Update callback url in the Github application to start from `https`
