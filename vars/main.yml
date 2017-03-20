@@ -1,4 +1,4 @@
-drone_version: 0.5
+drone_version: 0.5.0-rc
 drone_github_users: "anorsich,maqpie"
 drone_agents: [{name: "Nancy"}]
 
