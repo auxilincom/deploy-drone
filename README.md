@@ -1,6 +1,6 @@
 ## Installing Drone CI
 
-This repository aims to help beginners to get started with Drone. Install it within minutes and start moving towards continuous integration. If you want to get full picture about using Drone CI in production and setting up continuous integration process for your product start from our [blog post](http://)
+This repository aims to help beginners to get started with Drone. Install it within minutes and start moving towards continuous integration. If you want to get full picture about using Drone CI in production and setting up continuous integration process for your product start from our [blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/)
 
 Below we describe in details how to:
 
