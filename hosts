@@ -1,2 +1,2 @@
-drone ansible_ssh_host=138.197.86.232 ansible_user=root
-nginx ansible_ssh_host=138.197.86.232 ansible_user=root
+drone ansible_ssh_host=138.68.88.251 ansible_user=root
+nginx ansible_ssh_host=138.68.88.251 ansible_user=root

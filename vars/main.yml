@@ -1,4 +1,4 @@
-drone_version: 0.7.3
+drone_version: 0.8.0
 drone_github_users: "anorsich,maqpie"
 drone_agents: [{name: "Nancy"}]
 
@@ -6,4 +6,4 @@ server_setup_ssl: false
 server_ssl_key_path: "/etc/nginx/ssl/drone-ci.key"
 server_ssl_cert_path: "/etc/nginx/ssl/drone-ci.crt"
 
-nginx_drone_server_name: 138.197.86.232
+nginx_drone_server_name: service-stack-ci.paralect.com
