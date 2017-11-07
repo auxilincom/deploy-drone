@@ -14,8 +14,6 @@
       # the url, where drone instance will be publicly available
       # typically you would have nginx in front of Drone CI
       drone_host: http://178.62.116.103
-      # Drone secret key, used for private communication between agent and web UI
-      # more info: http://docs.drone.io/install-for-github/
 
       # Variables below are configuraed using vars/credentials.yml & vars/main.yml
       # drone_secret:
