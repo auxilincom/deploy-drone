@@ -38,7 +38,7 @@
         links:
           - postgres
         env:
-          DRONE_HOST: "http://service-stack-ci.paralect.com"
+          DRONE_HOST: "{{drone_url}}"
           DRONE_SERVER_ADDR: ":8000"
           DRONE_DEBUG: "true"
           DRONE_SECRET: "{{drone_secret}}"
@@ -51,7 +51,7 @@
           DRONE_GITHUB_CLIENT: "{{drone_github_client}}"
           DRONE_GITHUB_SECRET: "{{drone_github_secret}}"
           DRONE_GITHUB_SKIP_VERIFY: "true"
-          DRONE_GITHUB_CONTEXT: service-stack-ci/drone
+          DRONE_GITHUB_CONTEXT: paralect-stack-ci/drone
       tags:
         - drone
         - server
