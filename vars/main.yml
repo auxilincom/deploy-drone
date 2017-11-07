@@ -1,10 +1,7 @@
-drone_version: latest
-drone_github_users: "anorsich,maqpie,hovoodd,gavruk,filipochka97,NesterenkoNikita,ezhivitsa,KuhArt,IharKrasnik,nastya-kostyukova"
-drone_agents: [{name: "Nancy"}]
-drone_url: http://product-stack-ci.paralect.com
-
 server_setup_ssl: false
 server_ssl_key_path: "/etc/nginx/ssl/drone-ci.key"
 server_ssl_cert_path: "/etc/nginx/ssl/drone-ci.crt"
 
-nginx_drone_server_name: product-stack-ci.paralect.com
+nginx_drone_server_name: 178.62.116.103
+# List of users with admin access to the drone, readme more: http://docs.drone.io/user-management/
+drone_admins: "anorsich"

@@ -1,4 +1,4 @@
-## Installing Drone CI
+## Deploy Drone CI
 
 This repository aims to help beginners to get started with Drone. Install it within minutes and start moving towards continuous integration. If you want to get full picture about using Drone CI in production and setting up continuous integration process for your product start from our [blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/)
 
@@ -7,10 +7,12 @@ Below we describe in details how to:
 1. Install Drone CI on development environment
 2. Install production ready Drone CI behind nginx proxy with optional SSL
 
-*If you plan to use Drone CI for your product feel free to copy this repository to your project and change as needed.*
+*If you plan to use Drone CI for your product feel free to copy this repository to your project and change variables as needed.*
 
-Please, note that we use version 0.5 of Drone, which is not finally released yet, so there can be some breaking changes eventually.
-The good news is that we've been using this version in production for two months already and haven't had any issues.
+Please, note that we use the latest version (0.8.1 at the moment) of Drone, which is not always stable.
+The good news is that we've been using this version in production and haven't had any major issues.
+
+## Installation guide
 
 ### Setting up Github OAuth application
 
@@ -29,6 +31,8 @@ Prerequisites:
 
 1. [Docker](https://docs.docker.com/engine/installation/)
 2. [Docker-compose](https://docs.docker.com/compose/install/)
+
+`Note: Local installation still using Drone 0.5 and we haven't tested it on latest drone version. (Pull Requests are welcome)`. 
 
 Installing Drone CI:
 
@@ -61,7 +65,7 @@ Installation steps:
 3. Update github application callback url to either point to your server ip address or your domain. For example:
 `http://ci.myapp.com/authorize` or just `http://server_ip/authorize`.
 4. Set server ip variable or domain name in `vars/main.yml` (`nginx_drone_server_name` variable).
-5. Update `drone_github_users` in `vars/main.yml` - a comma separated list of github users, who will be able to access your continuous integration server.
+5. Update `drone_admins` in `vars/main.yml` - a comma separated list of github users, who will be able to access your continuous integration server.
 6. Rename `credentials-template.yml` into `credentials.yml` and update your github clientId, clientSecret as well as username and password for PostgreSQL database.
 
 Once you done all above, run the following command:

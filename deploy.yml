@@ -1,77 +1,25 @@
 ---
-- name: Deploy drone.io
+- name: Deploy drone ci server
   hosts: drone
   become_user: root
   become: true
   vars_files:
     - "vars/credentials.yml"
     - "vars/main.yml"
-  tasks:
-    - name: start postgres for drone ci
-      docker_container:
-        name: postgres
-        image: postgres:9.6.1
-        state: started
-        restart_policy: always
-        ports:
-          - "5432:5432"
-        volumes:
-          - /drone-postgres-data:/var/lib/postgresql/data
-        env:
-          POSTGRES_PASSWORD: "{{drone_postress_password}}"
-          POSTGRES_USER: "{{drone_postress_user}}"
-          POSTGRES_DB: "drone"
-      tags:
-        - postgres
+  roles:
+    - role: paralect.drone
+      # Version of Drone CI, see other versions here: https://hub.docker.com/r/drone/drone/tags/
+      drone_version: latest
 
-    - name: run drone server
-      docker_container:
-        name: drone-server
-        image: "drone/drone:{{drone_version}}"
-        state: started
-        restart_policy: always
-        ports:
-          - "8000:8000"
-          - "9000:9000"
-        volumes:
-          - /drone:/var/lib/drone/
-        links:
-          - postgres
-        env:
-          DRONE_HOST: "{{drone_url}}"
-          DRONE_SERVER_ADDR: ":8000"
-          DRONE_DEBUG: "true"
-          DRONE_SECRET: "{{drone_secret}}"
-          DRONE_DATABASE_DRIVER: postgres
-          DRONE_DATABASE_DATASOURCE: postgres://{{drone_postress_user}}:{{drone_postress_password}}@postgres:5432/drone?sslmode=disable
-          DRONE_OPEN: "false"
-          DRONE_ADMIN: "{{drone_github_users}}"
-          DRONE_ADMIN_ALL: "false"
-          DRONE_GITHUB: "true"
-          DRONE_GITHUB_CLIENT: "{{drone_github_client}}"
-          DRONE_GITHUB_SECRET: "{{drone_github_secret}}"
-          DRONE_GITHUB_SKIP_VERIFY: "true"
-          DRONE_GITHUB_CONTEXT: paralect-stack-ci/drone
-      tags:
-        - drone
-        - server
+      # the url, where drone instance will be publicly available
+      # typically you would have nginx in front of Drone CI
+      drone_host: http://178.62.116.103
+      # Drone secret key, used for private communication between agent and web UI
+      # more info: http://docs.drone.io/install-for-github/
 
-    - name: run drone agent
-      docker_container:
-        name: "agent-{{item.name}}"
-        image: "drone/agent:{{drone_version}}"
-        privileged: yes
-        state: started
-        restart_policy: always
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
-        links:
-          - drone-server
-        env:
-          DRONE_SERVER: "drone-server:9000"
-          DRONE_DEBUG: "true"
-          DRONE_SECRET: "{{drone_secret}}"
-      with_items: "{{drone_agents}}"
-      tags:
-        - drone
-        - agent
+      # Variables below are configuraed using vars/credentials.yml & vars/main.yml
+      # drone_secret:
+      # drone_postgress_user:
+      # drone_postgress_password:
+      # drone_github_client:
+      # drone_github_secret:
