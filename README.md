@@ -14,6 +14,8 @@ The good news is that we've been using this version in production and haven't ha
 
 ## Installation guide
 
+For Drone CI installation [paralect.drone](https://galaxy.ansible.com/paralect/drone/) Ansible role is used. 
+
 ### Setting up Github OAuth application
 
 The first step to do is to go to the [Github](https://github.com/settings/applications/new) and register new OAuth application. If you want to try install drone on the local machine just use `http://localhost:8000/authorize` as `Authorization callback URL`. For the production environment replace `http://localhost:8000` with your schema and domain name.
@@ -32,7 +34,7 @@ Prerequisites:
 1. [Docker](https://docs.docker.com/engine/installation/)
 2. [Docker-compose](https://docs.docker.com/compose/install/)
 
-`Note: Local installation still using Drone 0.5 and we haven't tested it on latest drone version. (Pull Requests are welcome)`. 
+`Note: Local installation still using Drone 0.5 and we haven't tested it on latest drone version. (Pull Requests are welcome)`.
 
 Installing Drone CI:
 
