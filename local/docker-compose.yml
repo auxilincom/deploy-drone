@@ -1,3 +1,4 @@
+## TODO: local configuration hasn't been tested on most recent Drone versions
 version: '2.0'
 services:
   drone-server:
@@ -15,16 +16,12 @@ services:
       I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
       DRONE_SERVER_ADDR: ":8000"
       DRONE_DEBUG: "true"
-      # CHANGEME: Randomly generate something at least 24 characters long with
-      # a password generator.
       DRONE_DATABASE_DRIVER: sqlite3
       DRONE_DATABASE_DATASOURCE: /var/lib/drone/drone.sqlite
       DRONE_OPEN: "false"
       DRONE_ORGS: ""
-      # CHANGEME: Replace with Github username(s) to grant admin privs to.
       DRONE_ADMIN_ALL: "false"
       DRONE_GITHUB: "true"
-      # CHANGEME: Swap your Github OAuth application's credentials in here.
   drone-agent:
     image: drone/drone:0.5
     command: agent
