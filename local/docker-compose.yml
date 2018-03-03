@@ -1,43 +1,36 @@
-## TODO: local configuration hasn't been tested on most recent Drone versions
-version: '2.0'
+version: '2'
+
 services:
   drone-server:
-    image: drone/drone:0.5
+    image: drone/drone:0.8.4
     ports:
-      - "8000:8000"
-    networks:
-      - drone
+      - 8000:8000
+      - 9000
     volumes:
       - ./drone-data:/var/lib/drone/
     env_file:
       - ./drone.env
+    restart: always
     environment:
-      I_UNDERSTAND_I_AM_USING_AN_UNSTABLE_VERSION: "true"
-      I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
-      DRONE_SERVER_ADDR: ":8000"
-      DRONE_DEBUG: "true"
-      DRONE_DATABASE_DRIVER: sqlite3
-      DRONE_DATABASE_DATASOURCE: /var/lib/drone/drone.sqlite
-      DRONE_OPEN: "false"
-      DRONE_ORGS: ""
-      DRONE_ADMIN_ALL: "false"
-      DRONE_GITHUB: "true"
+      - DRONE_OPEN=false
+      - DRONE_HOST=http://localhost:8000
+      - DRONE_GITHUB=true
+      # Variables below set via drone.env file
+      # - DRONE_GITHUB_CLIENT=
+      # - DRONE_GITHUB_SECRET=
+      # - DRONE_SECRET=
+
   drone-agent:
-    image: drone/drone:0.5
+    image: drone/agent:0.8.4
     command: agent
+    restart: always
     depends_on:
       - drone-server
-    networks:
-      - drone
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     env_file:
       - ./drone.env
     environment:
-      I_UNDERSTAND_I_AM_USING_AN_UNSTABLE_VERSION: "true"
-      I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
-      DRONE_SERVER: ws://drone-server:8000/ws/broker
-      DRONE_DEBUG: "true"
-networks:
-  drone:
-    driver: bridge
+      - DRONE_SERVER=drone-server:9000
+      # Variables below set via drone.env file
+      # - DRONE_SECRET=

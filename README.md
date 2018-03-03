@@ -1,107 +1,54 @@
-## Deploy Drone CI
+# Deploy Drone CI
+[![Stack](https://raw.githubusercontent.com/paralect/stack/master/stack-component-template/stack.png)](https://github.com/paralect/stack)
 
-This repository aims to help beginners to get started with Drone. Install it within minutes and start moving towards continuous integration. If you want to get full picture about using Drone CI in production and setting up continuous integration process for your product start from our [blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-Below we describe in details how to:
+[![Watch on GitHub](https://img.shields.io/github/watchers/paralect/docker-compose-starter.svg?style=social&label=Watch)](https://github.com/paralect/deploy-drone/watchers)
+[![Star on GitHub](https://img.shields.io/github/stars/paralect/deploy-drone.svg?style=social&label=Stars)](https://github.com/paralect/deploy-drone/stargazers)
+[![Follow](https://img.shields.io/twitter/follow/paralect.svg?style=social&label=Follow)](https://twitter.com/paralect)
+[![Tweet](https://img.shields.io/twitter/url/https/github.com/paralect/deploy-drone.svg?style=social)](https://twitter.com/intent/tweet?text=Deploy%20Drone%20CI%20to%20enable%20continuous%20integration%20on%20your%20product%20via%20https://github.com/paralect/deploy-drone)
 
-1. Install Drone CI on development environment
-2. Install production ready Drone CI behind nginx proxy with optional SSL
+[Drone](https://drone.io/) is free and open-source continuous delivery platform that automates your testing and release workflow. It is lightweight, stupidly simple, free & [Docker](https://www.docker.com/) based. 
+When we first met with Drone, it took us few days to adopt it for our products, play around and deploy to production. This repository aims to save your time from few days to few hours to get started. Last year we also written [a blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) about some details of our CI process. Please, be aware that blog post was written for version 0.5, while current version is 0.8.4 and few things have changed.
 
-*If you plan to use Drone CI for your product feel free to copy this repository to your project and change variables as needed.*
+## Features
 
-Please, note that we use the latest version (0.8.1 at the moment) of Drone, which is not always stable.
-The good news is that we've been using this version in production and haven't had any major issues.
+* 👌 **Local setup** with a single command. 
+* ️⚡️️ **Production deployment** automation behind [Nginx](https://nginx.org/en/) proxy with optional SSL support.
 
-## Installation guide
+## Getting Started
 
-For Drone CI installation [paralect.drone](https://galaxy.ansible.com/paralect/drone/) Ansible role is used. 
+1. [Setup github oauth application](OAUTH_APP.md) — this is required for both local and production environments.
+2. [Setup Drone on local machine](local/README.md). This is a good way to get started with drone.
+3. [Deploy to production](SETUP.md). 
 
-### Setting up Github OAuth application
+## Demo
 
-The first step to do is to go to the [Github](https://github.com/settings/applications/new) and register new OAuth application. If you want to try install drone on the local machine just use `http://localhost:8000/authorize` as `Authorization callback URL`. For the production environment replace `http://localhost:8000` with your schema and domain name.
+A real word Drone usage example is available [here](https://github.com/paralect/ship/.drone.yml).
 
-Once registered, you should have:
+## Change Log
 
-1. Github client id
-2. Github client secret
+This project adheres to [Semantic Versioning](http://semver.org/).
+Every release is documented on the Github [Releases](https://github.com/paralect/deploy-drone/releases) page.
 
-You will need them for both, production and local drone versions.
+## License
 
-### Install Drone CI on local machine
+Docker-compose Starter is released under the [MIT License](LICENSE).
 
-Prerequisites:
+## Contributing
 
-1. [Docker](https://docs.docker.com/engine/installation/)
-2. [Docker-compose](https://docs.docker.com/compose/install/)
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-`Note: Local installation still using Drone 0.5 and we haven't tested it on latest drone version. (Pull Requests are welcome)`.
+## Contributors
 
-Installing Drone CI:
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
-1. Rename `drone-example.env` into `drone.env` and set your github clientId, clientSecret as well as your github username
-2. Run one command to start Drone CI: `./bin/start-local.sh`
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars3.githubusercontent.com/u/681396?v=4" width="100px;"/><br /><sub><b>Andrew Orsich</b></sub>](http://paralect.com)<br />[💬](#question-anorsich "Answering Questions") [📝](#blog-anorsich "Blogposts") [💻](https://github.com/paralect/ship/commits?author=anorsich "Code") [🤔](#ideas-anorsich "Ideas, Planning, & Feedback") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-That's it! `./bin/start-local.sh` script uses `docker-compose` to run Drone UI and Drone Agent. Environment variables from `drone.env` are in the `.gitignore` to keep your secrets out of github repository.
-
-Note: When you first see Drone UI it will show `Loading...` in the sidebar - don't worry, this is expected behavior. Just go to the to the Account from top right menu to enable drone for some of your github repositories. From here you can move over to [this repository](https://github.com/maqpie/drone-starter), which can help you get started shipping your product with Drone CI.
-
-### Deploying production ready Drone CI to the Ubuntu 16.04
-
-Deployment to remove server is done using [Ansible](https://www.ansible.com/) - a simple automation tool. Deployment was tested on a brand new Digital Ocean Ubuntu 16.04 server. Some changes might required to run other linux distributives. Deployment steps includes:
-
-1. Docker installation
-2. Nginx proxy installation & configuration to work with Drone
-3. [PostgreSQL](https://www.postgresql.org/) installation for Drone to persist build information
-4. Running Drone & Drone CI inside Docker containers
-5. Optional configuration of SSL certificate
-
-Prerequisites:
-
-1. [Ansible](http://docs.ansible.com/ansible/intro_installation.html)
-2. Ubuntu 16.04 server & ssh access to that server
-
-Installation steps:
-
-1. Update server ip in `deploy/hosts` file. If you are planning to use same server for both drone and nginx - just put same ip for both, drone & nginx targets.
-2. Install Ansible role dependencies with one command: `./bin/install-ansible-dependencies.sh`
-3. Update github application callback url to either point to your server ip address or your domain. For example:
-`http://ci.myapp.com/authorize` or just `http://server_ip/authorize`.
-4. Set server ip variable or domain name in `vars/main.yml` (`nginx_drone_server_name` variable).
-5. Update `drone_admins` in `vars/main.yml` - a comma separated list of github users, who will be able to access your continuous integration server.
-6. Rename `credentials-template.yml` into `credentials.yml` and update your github clientId, clientSecret as well as username and password for PostgreSQL database.
-
-Once you done all above, run the following command:
-
-```
-./bin/setup-server.sh && ./bin/deploy-drone.sh
-```
-
-You should have Drone CI installed by now. The only step remaining is to make Drone work behind Nginx proxy.
-
-### Setting up Nginx for Drone CI
-
-If you would like to install nginx on a same server with Drone CI - just run following command:
-
-```
-./bin/setup-nginx.sh
-```
-
-If you already have nginx installed somewhere else and just would like to attach drone nginx configuration to existing nginx server you can do following:
-
-1. Set nginx server ip in `hosts` file for the nginx target
-2. Run same command `./bin/setup-nginx.sh`, but reply `no` to the question about nginx installation.
-
-In this case nginx configuration for Drone CI will be copied to the existing nginx server.
-
-
-### Setting up ssl for production Drone CI
-
-1. Place your ssl keys into int ssl-keys directory as app.crt and app.key (they are in a `.gitignore`)
-2. Make sure that `server_setup_ssl` is set to true in `vars/main.yml`
-3. Deploy ssl using `./bin/setup-server.sh --tags "nginx"`
-4. Update callback url in the Github application to start from `https`
-
-
-### License
-
-MIT
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
