@@ -35,7 +35,7 @@ Every release is documented on the Github [Releases](https://github.com/paralect
 
 ## License
 
-Docker-compose Starter is released under the [MIT License](LICENSE).
+Deploy Drone is released under the [MIT License](LICENSE).
 
 ## Contributing
 
