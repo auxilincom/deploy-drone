@@ -5,7 +5,7 @@ services:
     image: drone/drone:0.8.4
     ports:
       - 8000:8000
-      - 9000
+      - 9000:9000
     volumes:
       - ./drone-data:/var/lib/drone/
     env_file:
