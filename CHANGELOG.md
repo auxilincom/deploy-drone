@@ -4,6 +4,10 @@
   </summary>
 </details>
 
+## 1.2.0 (March 25, 2018)
+
+* Use python 3 by default for Ansible
+
 ## 1.1.0 (March 03, 2018)
 
 * Update readme according to Stack guidelines.
