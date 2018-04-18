@@ -4,6 +4,11 @@
   </summary>
 </details>
 
+## 1.2.1 (April 18, 2018)
+
+* Update drone version
+* Update SHIP_README
+
 ## 1.2.0 (March 25, 2018)
 
 * Use python 3 by default for Ansible
