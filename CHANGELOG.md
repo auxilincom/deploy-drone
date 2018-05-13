@@ -4,6 +4,10 @@
   </summary>
 </details>
 
+## 1.2.2 (May 13, 2018)
+
+* Update README
+
 ## 1.2.1 (April 18, 2018)
 
 * Update drone version

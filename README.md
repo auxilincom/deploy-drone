@@ -11,7 +11,7 @@
 [![Tweet](https://img.shields.io/twitter/url/https/github.com/paralect/deploy-drone.svg?style=social)](https://twitter.com/intent/tweet?text=Deploy%20Drone%20CI%20to%20enable%20continuous%20integration%20on%20your%20product%20via%20https://github.com/paralect/deploy-drone)
 
 [Drone](https://drone.io/) is free and open-source continuous delivery platform that automates your testing and release workflow. It is lightweight, stupidly simple, free & [Docker](https://www.docker.com/) based. 
-When we first met with Drone, it took us few days to adopt it for our products, play around and deploy to production. This repository aims to save your time from few days to few hours to get started. Last year we also written [a blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) about some details of our CI process. Please, be aware that blog post was written for version 0.5, while current version is 0.8.4 and few things have changed.
+When we first met with Drone, it took us few days to adopt it for our products, play around and deploy to production. This repository aims to save your time from few days to few hours to get started. Last year we also written [a blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) about some details of our CI process. Please, be aware that blog post was written for version 0.5, while current version is 0.8.5 and few things have changed.
 
 ## Features
 
@@ -26,7 +26,7 @@ When we first met with Drone, it took us few days to adopt it for our products, 
 
 ## Demo
 
-A real word Drone usage example is available [here](https://github.com/paralect/ship/.drone.yml).
+A real word Drone usage example is available [here](https://github.com/paralect/ship/blob/master/.drone.yml).
 
 ## Change Log
 
