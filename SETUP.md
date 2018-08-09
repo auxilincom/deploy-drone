@@ -19,7 +19,7 @@ High level deployment steps:
 5. Optional configuration of SSL certificate
 
 Prepare for deployment:
-1. Update server ip in `deploy/hosts` file. If you are planning to use same server for both drone and nginx - just put same ip for both, drone & nginx targets.
+1. Update server ip in `hosts` file. If you are planning to use same server for both drone and nginx - just put same ip for both, drone & nginx targets.
 2. Install Ansible role dependencies with one command: `./bin/install-ansible-dependencies.sh`
 3. Update github application callback url to either point to your server ip address or your domain. For example:
 `http://ci.myapp.com/authorize` or just `http://server_ip/authorize`.
@@ -29,8 +29,8 @@ Prepare for deployment:
 
 Once you done all above, run the following command:
 
-```
-./bin/setup-server.sh && ./bin/deploy-drone.sh
+```bash
+$ ./bin/setup-server.sh && ./bin/deploy-drone.sh
 ```
 
 You should have Drone CI installed by now. The only step remaining is to make Drone work behind Nginx proxy.
@@ -39,8 +39,8 @@ You should have Drone CI installed by now. The only step remaining is to make Dr
 
 If you would like to install nginx on a same server with Drone CI - just run following command:
 
-```
-./bin/setup-nginx.sh
+```bash
+$ ./bin/setup-nginx.sh
 ```
 
 If you already have nginx installed somewhere else and just would like to attach drone nginx configuration to existing nginx server you can do following:
@@ -53,7 +53,7 @@ In this case nginx configuration for Drone CI will be copied to the existing ngi
 
 ### Setting up ssl for production Drone CI
 
-1. Place your ssl keys into int ssl-keys directory as app.crt and app.key (they are in a `.gitignore`)
+1. Place your ssl keys into the `ssl-keys` directory as app.crt and app.key (they are in a `.gitignore`)
 2. Make sure that `server_setup_ssl` is set to true in `vars/main.yml`
 3. Deploy ssl using `./bin/setup-server.sh --tags "nginx"`
 4. Update callback url in the Github application to start from `https`
