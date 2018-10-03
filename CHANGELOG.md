@@ -4,6 +4,12 @@
   </summary>
 </details>
 
+## 1.3.0 (October 3, 2018)
+
+* Use official nginx ansible role
+* Use letsencrypt ansible role
+* Update Readme
+
 ## 1.2.2 (May 13, 2018)
 
 * Update README

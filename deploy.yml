@@ -6,13 +6,13 @@
     - "vars/credentials.yml"
     - "vars/main.yml"
   roles:
-    - role: paralect.drone
+    - role: auxilincom.drone
       # Version of Drone CI, see other versions here: https://hub.docker.com/r/drone/drone/tags/
-      drone_version: 0.8.5
+      drone_version: 0.8.6
 
       # the url, where drone instance will be publicly available
       # typically you would have nginx in front of Drone CI
-      drone_host: "http://{{nginx_drone_server_name}}"
+      drone_host: "http{{'s' if server_setup_ssl or server_setup_letsencrypt_ssl else ''}}://{{nginx_drone_server_name}}"
 
       # Variables below are configuraed using vars/credentials.yml & vars/main.yml
       # drone_secret:

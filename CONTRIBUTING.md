@@ -30,5 +30,5 @@ type.
 
 ## License
 
-By contributing to Paralect Ship, you agree that your contributions will be licensed
+By contributing to Auxilin, you agree that your contributions will be licensed
 under its [MIT license](LICENSE).
