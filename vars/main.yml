@@ -19,7 +19,7 @@ nginx_drone_server_name: ci.auxilin.com
 nginx_drone_internal_host: http://localhost:8000
 
 # List of users with admin access to the drone, readme more: http://docs.drone.io/user-management/
-drone_admins: "anorsich,ezhivitsa"
+drone_admins: "anorsich,ezhivitsa,nrt3"
 
 drone_postgress_db: drone
 
