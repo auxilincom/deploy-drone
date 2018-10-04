@@ -1,18 +1,30 @@
 ---
 - name: Setup nginx for drone
   hosts: nginx
-  become: true
-  gather_facts: False
+  become: yes
+  gather_facts: True
   vars_prompt:
     - name: run_roles
       prompt: "Install nginx from scratch?"
+      default: "n"
+    - name: generate_certificates
+      prompt: "Generate letsencrypt certificates?"
       default: "n"
   vars_files:
     - "vars/credentials.yml"
     - "vars/main.yml"
   roles:
-    - { role: nginx, when: run_roles == "y" }
+    - role: nginxinc.nginx
+      when: run_roles == "y"
+    - role: auxilincom.letsencrypt
+      when: generate_certificates == "y" and server_setup_letsencrypt_ssl
   tasks:
+    - name: setup nginx host file dirs
+      file: name=/etc/nginx/{{ item }} state=directory owner=root group=root
+      with_items:
+        - sites-available
+        - conf.d/http
+
     - name: Assures /etc/nginx/ssl exists
       file: path=/etc/nginx/ssl state=directory
       when: server_setup_ssl
@@ -24,15 +36,29 @@
         - {src: 'app.key', dest: '{{server_ssl_key_path}}'}
       when: server_setup_ssl
 
+    - name: Generate dhparams
+      shell: openssl dhparam -out /etc/nginx/dhparams.pem 4096
+      args:
+        creates: /etc/nginx/dhparams.pem
+      when: server_setup_letsencrypt_ssl or server_setup_ssl
+
     - name: copy nginx virtual host file
       template: src="templates/drone-nginx-config.j2"
                 dest="/etc/nginx/sites-available/01_drone-ci"
                 owner=root
                 group=root
+      when: not server_setup_letsencrypt_ssl and not server_setup_ssl
+
+    - name: copy nginx virtual host file for ssl
+      template: src="templates/drone-nginx-config-with-ssl.j2"
+                dest="/etc/nginx/sites-available/01_drone-ci"
+                owner=root
+                group=root
+      when: server_setup_letsencrypt_ssl or server_setup_ssl
 
     - name: link nginx virtual host file
       file: src="/etc/nginx/sites-available/01_drone-ci"
-            dest="/etc/nginx/sites-enabled/01_drone-ci"
+            dest="/etc/nginx/conf.d/http/01_drone-ci.conf"
             state=link
 
     - name: restart nginx

@@ -1,10 +1,10 @@
 {
-  "name": "stack-component",
-  "description": "Stack is a set of components which help ship better products faster 🚀",
-  "author": "Paralect",
+  "name": "deploy-drone",
+  "description": "Deploy Drone CI to enable continuous integration ⚡️ on your product",
+  "author": "Auxilin",
   "license": "MIT",
   "devDependencies": {
-    "all-contributors-cli": "^4.10.0"
+    "all-contributors-cli": "5.4.0"
   },
   "scripts": {
     "add-contributor": "all-contributors add",

@@ -1,12 +1,29 @@
-server_setup_ssl: false
-server_ssl_key_path: "/etc/nginx/ssl/drone-ci.key"
-server_ssl_cert_path: "/etc/nginx/ssl/drone-ci.crt"
+# Nginx variables
+nginx_main_template_enable: true
+nginx_main_template_user: www-data
+nginx_main_template_worker_processes: 2
+nginx_main_template_worker_connections: 1024
+nginx_http_template_enable: true
 
-nginx_drone_server_name: ship-ci.paralect.com
+server_setup_ssl: false
+server_setup_letsencrypt_ssl: true
+
+server_ssl_key_path: "/etc/letsencrypt/live/ci.auxilin.com/fullchain.pem"
+server_ssl_cert_path: "/etc/letsencrypt/live/ci.auxilin.com/privkey.pem"
+server_ssl_dhparams: "/etc/nginx/dhparams.pem"
+
+letsencrypt_email: "ship@test.com"
+
+nginx_drone_server_name: ci.auxilin.com
 # Internal drone ui http url used by nginx to proxy traffic. For example: http://localhost:8000
 nginx_drone_internal_host: http://localhost:8000
 
 # List of users with admin access to the drone, readme more: http://docs.drone.io/user-management/
-drone_admins: "anorsich,ezhivitsa,IharKrasnik"
+drone_admins: "anorsich,ezhivitsa,nrt3"
 
-drone_postgress_db: ship_drone
+drone_postgress_db: drone
+
+certbot_version: v0.27.1
+email: launch@auxilin.com
+domains_list:
+  - "ci.auxilin.com"

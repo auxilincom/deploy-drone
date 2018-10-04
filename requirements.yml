@@ -1,3 +1,5 @@
 ---
 - src: angstwad.docker_ubuntu
-- src: paralect.drone
+- src: auxilincom.drone
+- src: auxilincom.letsencrypt
+- src: nginxinc.nginx

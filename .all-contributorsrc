@@ -1,6 +1,6 @@
 {
   "projectName": "ship",
-  "projectOwner": "paralect",
+  "projectOwner": "auxilin",
   "files": [
     "README.md"
   ],
@@ -11,10 +11,20 @@
       "login": "anorsich",
       "name": "Andrew Orsich",
       "avatar_url": "https://avatars3.githubusercontent.com/u/681396?v=4",
-      "profile": "http://paralect.com",
+      "profile": "https://github.com/anorsich",
       "contributions": [
         "question",
         "blog",
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "ezhivitsa",
+      "name": "Evgeny Zhivitsa",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6461311?v=4",
+      "profile": "https://github.com/ezhivitsa",
+      "contributions": [
         "code",
         "ideas"
       ]
