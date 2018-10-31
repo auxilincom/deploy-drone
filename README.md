@@ -24,7 +24,7 @@ When we first met with Drone, it took us few days to adopt it for our products, 
 
 ## Demo
 
-A real word Drone usage example is available [here](https://github.com/auxilincom/ship/blob/master/.drone.yml).
+A real word Drone usage example is available [here](https://github.com/auxilincom/auxilin/blob/master/.drone.yml).
 
 ## Change Log
 
@@ -45,7 +45,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars3.githubusercontent.com/u/681396?v=4" width="100px;"/><br /><sub><b>Andrew Orsich</b></sub>](https://github.com/anorsich)<br />[💬](#question-anorsich "Answering Questions") [📝](#blog-anorsich "Blogposts") [💻](https://github.com/auxilin/ship/commits?author=anorsich "Code") [🤔](#ideas-anorsich "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/6461311?v=4" width="100px;"/><br /><sub><b>Evgeny Zhivitsa</b></sub>](https://github.com/ezhivitsa)<br />[💻](https://github.com/auxilin/ship/commits?author=ezhivitsa "Code") [🤔](#ideas-ezhivitsa "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/2302873?v=4" width="100px;"/><br /><sub><b>Ihar</b></sub>](https://github.com/IharKrasnik)<br />[💻](https://github.com/auxilin/ship/commits?author=IharKrasnik "Code") |
+| [<img src="https://avatars3.githubusercontent.com/u/681396?v=4" width="100px;"/><br /><sub><b>Andrew Orsich</b></sub>](https://github.com/anorsich)<br />[💬](#question-anorsich "Answering Questions") [📝](#blog-anorsich "Blogposts") [💻](https://github.com/auxilin/deploy-drone/commits?author=anorsich "Code") [🤔](#ideas-anorsich "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/6461311?v=4" width="100px;"/><br /><sub><b>Evgeny Zhivitsa</b></sub>](https://github.com/ezhivitsa)<br />[💻](https://github.com/auxilin/deploy-drone/commits?author=ezhivitsa "Code") [🤔](#ideas-ezhivitsa "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/2302873?v=4" width="100px;"/><br /><sub><b>Ihar</b></sub>](https://github.com/IharKrasnik)<br />[💻](https://github.com/auxilin/deploy-drone/commits?author=IharKrasnik "Code") |
 | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

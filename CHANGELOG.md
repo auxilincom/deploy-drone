@@ -4,6 +4,10 @@
   </summary>
 </details>
 
+## 1.3.1 (October 31, 2018)
+
+* Update Drone version
+
 ## 1.3.0 (October 3, 2018)
 
 * Use official nginx ansible role

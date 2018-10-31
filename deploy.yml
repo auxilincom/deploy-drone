@@ -8,7 +8,7 @@
   roles:
     - role: auxilincom.drone
       # Version of Drone CI, see other versions here: https://hub.docker.com/r/drone/drone/tags/
-      drone_version: 0.8.6
+      drone_version: 0.8.7
 
       # the url, where drone instance will be publicly available
       # typically you would have nginx in front of Drone CI

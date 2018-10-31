@@ -12,8 +12,6 @@ server_ssl_key_path: "/etc/letsencrypt/live/ci.auxilin.com/fullchain.pem"
 server_ssl_cert_path: "/etc/letsencrypt/live/ci.auxilin.com/privkey.pem"
 server_ssl_dhparams: "/etc/nginx/dhparams.pem"
 
-letsencrypt_email: "ship@test.com"
-
 nginx_drone_server_name: ci.auxilin.com
 # Internal drone ui http url used by nginx to proxy traffic. For example: http://localhost:8000
 nginx_drone_internal_host: http://localhost:8000
