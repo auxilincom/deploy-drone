@@ -5,6 +5,9 @@ nginx_main_template_worker_processes: 2
 nginx_main_template_worker_connections: 1024
 nginx_http_template_enable: true
 
+# ansible-drone variables
+drone_version: "0.8.9"
+
 server_setup_ssl: false
 server_setup_letsencrypt_ssl: true
 
@@ -21,7 +24,7 @@ drone_admins: "anorsich,ezhivitsa,nrt3,maqpie"
 
 drone_postgress_db: drone
 
-certbot_version: v0.27.1
+certbot_version: v0.30.2
 email: launch@auxilin.com
 domains_list:
   - "ci.auxilin.com"

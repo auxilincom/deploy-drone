@@ -1,15 +1,20 @@
 # Deploy Drone CI
 
+[![Auxilin.com — Production ready Node, React starter kit for building products at a warp speed](https://raw.githubusercontent.com/auxilincom/component-template/master/assets/cover-black.png)](https://github.com/auxilincom/auxilin)
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![David Dependancy Status](https://david-dm.org/auxilincom/deploy-drone.svg)](https://david-dm.org/auxilincom/deploy-drone)
 
 [![Watch on GitHub](https://img.shields.io/github/watchers/auxilincom/deploy-drone.svg?style=social&label=Watch)](https://github.com/auxilincom/deploy-drone/watchers)
 [![Star on GitHub](https://img.shields.io/github/stars/auxilincom/deploy-drone.svg?style=social&label=Stars)](https://github.com/auxilincom/deploy-drone/stargazers)
+[![Follow](https://img.shields.io/twitter/follow/auxilin.svg?style=social&label=Follow)](https://twitter.com/auxilin)
 [![Tweet](https://img.shields.io/twitter/url/https/github.com/auxilincom/deploy-drone.svg?style=social)](https://twitter.com/intent/tweet?text=Deploy%20Drone%20CI%20to%20enable%20continuous%20integration%20on%20your%20product%20via%20https://github.com/auxilincom/deploy-drone)
+[![@auxilin](https://img.shields.io/badge/%F0%9F%92%AC%20Telegram-t.me/auxilin-blue.svg)](https://t.me/auxilin)
 
 [Drone](https://drone.io/) is free and open-source continuous delivery platform that automates your testing and release workflow. It is lightweight, stupidly simple, free & [Docker](https://www.docker.com/) based. 
-When we first met with Drone, it took us few days to adopt it for our products, play around and deploy to production. This repository aims to save your time from few days to few hours to get started. Last year we also written [a blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) about some details of our CI process. Please, be aware that blog post was written for version 0.5, while current version is 0.8.6 and few things have changed.
+When we first met with Drone, it took us few days to adopt it for our products, play around and deploy to production. This repository aims to save your time from few days to few hours to get started. Last year we also written [a blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) about some details of our CI process. Please, be aware that blog post was written for version 0.5, while current version is 0.8.9 and few things have changed.
 
 ## Features
 

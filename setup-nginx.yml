@@ -30,10 +30,10 @@
       when: server_setup_ssl
 
     - name: Copy ssl certiicate to /etc/nginx/ssl
-      copy: src=ssl-keys/{{item.src}} dest={{item.dest}} owner=root mode=744
+      copy: src=ssl-keys/{{ item.src }} dest={{ item.dest }} owner=root mode=744
       with_items:
-        - {src: 'app.crt', dest: '{{server_ssl_cert_path}}'}
-        - {src: 'app.key', dest: '{{server_ssl_key_path}}'}
+        - {src: 'app.crt', dest: '{{ server_ssl_cert_path }}'}
+        - {src: 'app.key', dest: '{{ server_ssl_key_path }}'}
       when: server_setup_ssl
 
     - name: Generate dhparams

@@ -5,18 +5,29 @@
   vars_files:
     - "vars/credentials.yml"
     - "vars/main.yml"
-  roles:
-    - role: auxilincom.drone
-      # Version of Drone CI, see other versions here: https://hub.docker.com/r/drone/drone/tags/
-      drone_version: 0.8.7
+  # roles:
+  #   - role: auxilincom.drone
+  #     # Version of Drone CI, see other versions here: https://hub.docker.com/r/drone/drone/tags/
+  #     drone_version: 0.8.7
 
-      # the url, where drone instance will be publicly available
-      # typically you would have nginx in front of Drone CI
-      drone_host: "http{{'s' if server_setup_ssl or server_setup_letsencrypt_ssl else ''}}://{{nginx_drone_server_name}}"
+  #     # the url, where drone instance will be publicly available
+  #     # typically you would have nginx in front of Drone CI
+  #     drone_host: "http{{'s' if server_setup_ssl or server_setup_letsencrypt_ssl else ''}}://{{nginx_drone_server_name}}"
 
-      # Variables below are configuraed using vars/credentials.yml & vars/main.yml
-      # drone_secret:
-      # drone_postgress_user:
-      # drone_postgress_password:
-      # drone_github_client:
-      # drone_github_secret:
+  #     # Variables below are configuraed using vars/credentials.yml & vars/main.yml
+  #     # drone_secret:
+  #     # drone_postgress_user:
+  #     # drone_postgress_password:
+  #     # drone_github_client:
+  #     # drone_github_secret:
+
+  tasks:
+    - name: Add letsencrypt cronjob for cert renewal
+      become: yes
+      cron:
+        name: letsencrypt_renewal
+        weekday: 1#1
+        job: docker run --rm -it -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt -v /var/.secrets:/var/.secrets -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 -p 443:443 -e "AWS_CONFIG_FILE=/var/.secrets/certbot/credentials.ini" certbot/dns-{{dns_plugin}}:{{certbot_version}} renew --pre-hook "service nginx stop" --post-hook "service nginx start"
+      when: use_dns_plugin
+      tags:
+        - certbot-dns
