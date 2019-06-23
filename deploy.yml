@@ -5,21 +5,10 @@
   vars_files:
     - "vars/credentials.yml"
     - "vars/main.yml"
-  # roles:
-  #   - role: auxilincom.drone
-  #     # Version of Drone CI, see other versions here: https://hub.docker.com/r/drone/drone/tags/
-  #     drone_version: 0.8.7
-
-  #     # the url, where drone instance will be publicly available
-  #     # typically you would have nginx in front of Drone CI
-  #     drone_host: "http{{'s' if server_setup_ssl or server_setup_letsencrypt_ssl else ''}}://{{nginx_drone_server_name}}"
-
-  #     # Variables below are configuraed using vars/credentials.yml & vars/main.yml
-  #     # drone_secret:
-  #     # drone_postgress_user:
-  #     # drone_postgress_password:
-  #     # drone_github_client:
-  #     # drone_github_secret:
+  roles:
+    - role: auxilincom.drone
+      drone_rpc_server: "http{{'s' if server_setup_ssl or server_setup_letsencrypt_ssl else ''}}://{{drone_server_host}}"
+      drone_server_proto: "http{{'s' if server_setup_ssl or server_setup_letsencrypt_ssl else ''}}"
 
   tasks:
     - name: Add letsencrypt cronjob for cert renewal

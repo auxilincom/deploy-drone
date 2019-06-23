@@ -10,8 +10,8 @@ Installation steps:
 1. Update server ip in `hosts` file. If you are planning to use same server for both drone and nginx - just put same ip for both, drone & nginx targets.
 2. Install Ansible role dependencies with one command: `./bin/install-ansible-dependencies.sh`
 3. Update github application callback url to either point to your server ip address or your domain. For example:
-`http://ci.myapp.com/authorize` or just `http://server_ip/authorize`.
-4. Set server ip variable or domain name in `vars/main.yml` (`nginx_drone_server_name` variable).
+`http://ci.myapp.com/login` or just `http://server_ip/login`.
+4. Set server ip variable or domain name in `vars/main.yml` (`drone_server_host` variable).
 5. Update `drone_admins` in `vars/main.yml` - a comma separated list of github users, who will be able to access your continuous integration server.
 6. Rename `credentials-template.yml` into `credentials.yml` and update your github clientId, clientSecret as well as username and password for PostgreSQL database.
 

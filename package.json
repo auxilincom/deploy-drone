@@ -3,11 +3,19 @@
   "description": "Deploy Drone CI to enable continuous integration ⚡️ on your product",
   "author": "Auxilin",
   "license": "MIT",
-  "devDependencies": {
-    "all-contributors-cli": "5.11.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/auxilincom/deploy-drone.git"
   },
+  "bugs": {
+    "url": "https://github.com/auxilincom/deploy-drone/issues"
+  },
+  "homepage": "https://github.com/auxilincom/deploy-drone#readme",
   "scripts": {
     "add-contributor": "all-contributors add",
     "generate-contributors": "all-contributors generate"
+  },
+  "devDependencies": {
+    "all-contributors-cli": "6.7.0"
   }
 }
