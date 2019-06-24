@@ -12,9 +12,8 @@ Installation steps:
 3. Update github application callback url to either point to your server ip address or your domain. For example:
 `http://ci.myapp.com/login` or just `http://server_ip/login`.
 4. Set server ip variable or domain name in `vars/main.yml` (`drone_server_host` variable).
-5. Update `drone_admins` in `vars/main.yml` - a comma separated list of github users, who will be able to access your continuous integration server.
-6. Rename `credentials-template.yml` into `credentials.yml` and update your github clientId, clientSecret as well as username and password for PostgreSQL database.
-
+5. Update `drone_user_create` in `vars/main.yml` - a comma separated list of github users, who will have admin access your continuous integration server. Read more [here](https://docs.drone.io/administration/user/admins//).
+6. Rename `credentials-template.yml` into `credentials.yml` and update your github clientId, clientSecret, drone secrets, certbot dns data as well as username and password for PostgreSQL database.
 Once you done all above, run the following command:
 
 ```bash
