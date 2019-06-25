@@ -5,9 +5,6 @@ nginx_main_template_worker_processes: 2
 nginx_main_template_worker_connections: 1024
 nginx_http_template_enable: true
 
-# ansible-drone variables
-drone_version: "0.8.9"
-
 server_setup_ssl: false
 server_setup_letsencrypt_ssl: true
 
@@ -15,16 +12,37 @@ server_ssl_key_path: "/etc/letsencrypt/live/ci.auxilin.com/fullchain.pem"
 server_ssl_cert_path: "/etc/letsencrypt/live/ci.auxilin.com/privkey.pem"
 server_ssl_dhparams: "/etc/nginx/dhparams.pem"
 
-nginx_drone_server_name: ci.auxilin.com
+# ansible-drone variables
+
+# Version of Drone CI, see other versions here: https://hub.docker.com/r/drone/drone/tags/
+drone_version: 1.2.1
+
+# List of users with admins or orgnizations, who has access to the instance:
+# https://docs.drone.io/reference/server/drone-user-filter/
+drone_user_filter: "auxilincom"
+
+# use this to create first admin for the drone server
+# read more: https://docs.drone.io/administration/user/admins/
+drone_user_create: "anorsich,ezhivitsa,nrt3,maqpie"
+
+# Name of the docker agent container, you can add more than one agent
+drone_runners: [{name: "Nancy"}]
+drone_runner_capacity: 2
+
+# the url, where drone instance will be publicly available
+# typically you would have nginx in front of Drone CI
+drone_server_host: "ci.auxilin.com"
+
+# A name of to postgress db used by drone, read more: https://docs.drone.io/install/server/storage/postgres/
+drone_postgress_db: drone
+# a directory on a host machine, where postgresql data stored
+drone_postgress_data_dir: /drone-postgres-data
+
 # Internal drone ui http url used by nginx to proxy traffic. For example: http://localhost:8000
 nginx_drone_internal_host: http://localhost:8000
 
-# List of users with admin access to the drone, readme more: http://docs.drone.io/user-management/
-drone_admins: "anorsich,ezhivitsa,nrt3,maqpie"
-
-drone_postgress_db: drone
-
-certbot_version: v0.30.2
+# ansible-letsencrypt variables
+certbot_version: v0.33.1
 email: launch@auxilin.com
 domains_list:
   - "ci.auxilin.com"

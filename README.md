@@ -14,7 +14,7 @@
 [![@auxilin](https://img.shields.io/badge/%F0%9F%92%AC%20Telegram-t.me/auxilin-blue.svg)](https://t.me/auxilin)
 
 [Drone](https://drone.io/) is free and open-source continuous delivery platform that automates your testing and release workflow. It is lightweight, stupidly simple, free & [Docker](https://www.docker.com/) based. 
-When we first met with Drone, it took us few days to adopt it for our products, play around and deploy to production. This repository aims to save your time from few days to few hours to get started. Last year we also written [a blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) about some details of our CI process. Please, be aware that blog post was written for version 0.5, while current version is 0.8.9 and few things have changed.
+When we first met with Drone, it took us few days to adopt it for our products, play around and deploy to production. This repository aims to save your time from few days to few hours to get started. Last year we also written [a blog post](https://blog.maqpie.com/2017/03/21/build-and-deploy-applications-using-drone-ci-docker-and-ansible/) about some details of our CI process. Please, be aware that the blog post was written for version 0.5, while the current version is 1.2.1 and a lot of things have changed.
 
 ## Features
 

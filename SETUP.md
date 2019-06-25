@@ -9,7 +9,7 @@ For Drone CI installation [auxilincom.drone](https://galaxy.ansible.com/auxilinc
 
 ### Deploy to production
 
-❕ deploment tested on the latest [DigitalOcean](https://www.digitalocean.com/) Ubuntu dropet. me changes might required to run other linux distributives.
+❕ deploment tested on the latest [DigitalOcean](https://www.digitalocean.com/) Ubuntu dropet. Some changes might be required to run other linux distributives.
 
 High level deployment steps:
 1. Docker installation
@@ -22,10 +22,10 @@ Prepare for deployment:
 1. Update server ip in `hosts` file. If you are planning to use same server for both drone and nginx - just put same ip for both, drone & nginx targets.
 2. Install Ansible role dependencies with one command: `./bin/install-ansible-dependencies.sh`
 3. Update github application callback url to either point to your server ip address or your domain. For example:
-`http://ci.myapp.com/authorize` or just `http://server_ip/authorize`.
-4. Set server ip variable or domain name in `vars/main.yml` (`nginx_drone_server_name` variable).
-5. Update `drone_admins` in `vars/main.yml` - a comma separated list of github users, who will be able to access your continuous integration server. Read more [here](http://docs.drone.io/user-registration/).
-6. Rename `credentials-template.yml` into `credentials.yml` and update your github clientId, clientSecret as well as username and password for PostgreSQL database.
+`http://ci.myapp.com/login` or just `http://server_ip/login`.
+4. Set server ip variable or domain name in `vars/main.yml` (`drone_server_host` variable).
+5. Update `drone_user_create` in `vars/main.yml` - a comma separated list of github users, who will have admin access your continuous integration server. Read more [here](https://docs.drone.io/administration/user/admins//).
+6. Rename `credentials-template.yml` into `credentials.yml` and update your github clientId, clientSecret, drone secrets, certbot dns data as well as username and password for PostgreSQL database.
 
 Once you done all above, run the following command:
 
