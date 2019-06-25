@@ -4,6 +4,12 @@
   </summary>
 </details>
 
+## 1.5.0 (June 25, 2019)
+
+* Migrate Drone to version 1.2.1
+* Update Certbot version
+* Update readme
+
 ## 1.4.0 (February 02, 2019)
 
 * Update Drone version
