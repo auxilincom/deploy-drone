@@ -2,21 +2,21 @@
 - name: Deploy drone ci server
   hosts: drone
   become: true
+  vars_prompt:
+    - name: ansible_drone_deploy_postgresql
+      prompt: "Install postgres database for drone from scratch? (yes/no)"
+      default: "no"
+    - name: ansible_drone_deploy_server
+      prompt: "Install drone server from scratch? (yes/no)"
+      default: "no"
+    - name: ansible_drone_deploy_agents
+      prompt: "Install drone agents from scratch? (yes/no)"
+      default: "no"
   vars_files:
     - "vars/credentials.yml"
     - "vars/main.yml"
   roles:
     - role: auxilincom.drone
-      drone_rpc_server: "http{{'s' if server_setup_ssl or server_setup_letsencrypt_ssl else ''}}://{{drone_server_host}}"
+      drone_rpc_server: "http{{ 's' if server_setup_ssl or server_setup_letsencrypt_ssl else '' }}\
+        ://{{ drone_server_host }}"
       drone_server_proto: "http{{'s' if server_setup_ssl or server_setup_letsencrypt_ssl else ''}}"
-
-  tasks:
-    - name: Add letsencrypt cronjob for cert renewal
-      become: yes
-      cron:
-        name: letsencrypt_renewal
-        weekday: 1#1
-        job: docker run --rm -it -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt -v /var/.secrets:/var/.secrets -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 -p 443:443 -e "AWS_CONFIG_FILE=/var/.secrets/certbot/credentials.ini" certbot/dns-{{dns_plugin}}:{{certbot_version}} renew --pre-hook "service nginx stop" --post-hook "service nginx start"
-      when: use_dns_plugin
-      tags:
-        - certbot-dns

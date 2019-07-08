@@ -4,6 +4,10 @@
   </summary>
 </details>
 
+## 1.5.1 (July 08, 2019)
+
+* Update boolean variables
+
 ## 1.5.0 (June 25, 2019)
 
 * Migrate Drone to version 1.2.1

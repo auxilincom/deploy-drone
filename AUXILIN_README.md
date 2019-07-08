@@ -41,6 +41,6 @@ In this case nginx configuration for Drone CI will be copied to the existing ngi
 ### Setting up ssl for production Drone CI
 
 1. Place your ssl keys into the `ssl-keys` directory as app.crt and app.key (they are in a `.gitignore`)
-2. Make sure that `server_setup_ssl` is set to true in `vars/main.yml`
+2. Make sure that `server_setup_ssl` is set to `yes` in `vars/main.yml`
 3. Deploy ssl using `./bin/setup-server.sh --tags "nginx"`
 4. Update callback url in the Github application to start from `https`

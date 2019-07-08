@@ -5,19 +5,19 @@
   gather_facts: True
   vars_prompt:
     - name: run_roles
-      prompt: "Install nginx from scratch?"
-      default: "n"
+      prompt: "Install nginx from scratch? (yes/no)"
+      default: "no"
     - name: generate_certificates
-      prompt: "Generate letsencrypt certificates?"
-      default: "n"
+      prompt: "Generate letsencrypt certificates? (yes/no)"
+      default: "no"
   vars_files:
     - "vars/credentials.yml"
     - "vars/main.yml"
   roles:
     - role: nginxinc.nginx
-      when: run_roles == "y"
+      when: run_roles|bool
     - role: auxilincom.letsencrypt
-      when: generate_certificates == "y" and server_setup_letsencrypt_ssl
+      when: generate_certificates|bool and server_setup_letsencrypt_ssl|bool
   tasks:
     - name: setup nginx host file dirs
       file: name=/etc/nginx/{{ item }} state=directory owner=root group=root
@@ -27,34 +27,34 @@
 
     - name: Assures /etc/nginx/ssl exists
       file: path=/etc/nginx/ssl state=directory
-      when: server_setup_ssl
+      when: server_setup_ssl|bool
 
     - name: Copy ssl certiicate to /etc/nginx/ssl
       copy: src=ssl-keys/{{ item.src }} dest={{ item.dest }} owner=root mode=744
       with_items:
         - {src: 'app.crt', dest: '{{ server_ssl_cert_path }}'}
         - {src: 'app.key', dest: '{{ server_ssl_key_path }}'}
-      when: server_setup_ssl
+      when: server_setup_ssl|bool
 
     - name: Generate dhparams
       shell: openssl dhparam -out /etc/nginx/dhparams.pem 4096
       args:
         creates: /etc/nginx/dhparams.pem
-      when: server_setup_letsencrypt_ssl or server_setup_ssl
+      when: server_setup_letsencrypt_ssl|bool or server_setup_ssl|bool
 
     - name: copy nginx virtual host file
       template: src="templates/drone-nginx-config.j2"
                 dest="/etc/nginx/sites-available/01_drone-ci"
                 owner=root
                 group=root
-      when: not server_setup_letsencrypt_ssl and not server_setup_ssl
+      when: not server_setup_letsencrypt_ssl|bool and not server_setup_ssl|bool
 
     - name: copy nginx virtual host file for ssl
       template: src="templates/drone-nginx-config-with-ssl.j2"
                 dest="/etc/nginx/sites-available/01_drone-ci"
                 owner=root
                 group=root
-      when: server_setup_letsencrypt_ssl or server_setup_ssl
+      when: server_setup_letsencrypt_ssl|bool or server_setup_ssl|bool
 
     - name: link nginx virtual host file
       file: src="/etc/nginx/sites-available/01_drone-ci"
